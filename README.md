@@ -35,5 +35,4 @@ even 14,14 if you like.
 
 5. it is a simple model;thus, its accuracy not so high. There are way to imporve, logistic regression, fed more trainning images
 and label corresponding 1 or 0 to the image is you(1) or not(0), more the better, this is a long traning time. 
-Restricted Boltzmann machine and deep belief network, these two should be good fit for image processing. I am stilling learning those two.
-model.
+Restricted Boltzmann machine and deep belief network, these two should be good fit for image processing. I am stilling learning those two model.
