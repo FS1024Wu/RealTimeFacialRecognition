@@ -16,6 +16,7 @@ import gc
 import random
 import math
 from decimal import Decimal
+##open source imported as facial model
 cascPath = "haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
 log.basicConfig(filename='webcam.log',level=log.INFO)
@@ -25,6 +26,7 @@ flat_arr_images_Y1_matrix=[]#all images in a folder for trainning predict Y
 n=0#iteration of scans
 tData = pd.read_excel(r"train.xlsx", sheet_name='Sheet1')
 print("Column headings:", tData.columns)
+## Trainning model set up
 for filename in glob.glob(r"train\*.PNG"):
     im=Image.open(filename).resize((64,64)).convert('RGBA')#resize to smallest due memroy and matrix issue bestfit 64，64
     print(filename)
@@ -44,7 +46,7 @@ inverse_dot_flat_arr_images_XandY_matrix = dot_flat_arr_images_XandY_matrix .I
 beta_Training_NN_Xt = inverse_dot_flat_arr_images_XandY_matrix * Transform_flat_arr_images_X_matrix
 beta_Training1 = beta_Training_NN_Xt * flat_arr_images_Y1_matrix 
 print("Beta1:",beta_Training1,beta_Training1.shape)
-
+## real time camera to detect new person and crop its facial coordiante as test image.
 video_capture = cv2.VideoCapture(0)
 anterior = 0
 while True:
@@ -65,8 +67,7 @@ while True:
         minSize=(128, 188)
     )
 
-
-    # Draw a rectangle around the faces
+## Draw a rectangle around the faces
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
@@ -109,6 +110,5 @@ while True:
 # When everything is done, release the capture
 video_capture.release()
 cv2.destroyAllWindows()
-
 
 
